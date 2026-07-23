@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+:root {
+  --color-primary: #055038;        /* Forest Green */
+  --color-primary-hover: #033b29;  /* Darker Green for Hover */
+  --color-accent: #D4A359;         /* Gold Accent */
+  --color-bg-light: #FAF8F5;       /* Cream Background */
+  --color-text-dark: #2C3E35;      /* Dark Text for Drawer */
+}
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-accent: var(--color-accent);
+  --color-bg-light: var(--color-bg-light);
+  --color-text-dark: var(--color-text-dark);
+}

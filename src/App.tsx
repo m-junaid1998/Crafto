@@ -1,7 +1,13 @@
-import { Navbar } from "./components/Navbar";
+import { BrowserRouter } from "react-router-dom";
+import MainRouter from "./Routes";
+
 
 const App = () => {
-  return <Navbar />;
+  return (
+    <BrowserRouter>
+      <MainRouter />
+    </BrowserRouter>
+  );
 };
 
 export default App;
