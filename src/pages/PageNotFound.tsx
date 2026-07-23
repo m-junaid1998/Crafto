@@ -14,7 +14,7 @@ export const PageNotFound: React.FC = () => {
         </div>
         <div className="space-y-2">
           <h1 className="font-serif text-5xl font-bold text-primary tracking-tight">404</h1>
-          <h2 className="text-lg font-semibold text-gray-800">Page not found</h2>
+          <h2 className="text-lg font-semibold text-gray-800">Page Not Found</h2>
           <p className="text-sm text-gray-500 font-light max-w-xs mx-auto">The page you're looking for doesn't exist or has been moved.</p>
         </div>
         <div className="flex items-center justify-center gap-3 pt-2">
