@@ -7,7 +7,7 @@ export const PageNotFound: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-[85vh] bg-[#F7F5F0] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#F7F5F0] flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center space-y-6">
         <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 text-primary">
           <Ghost size={38} className="animate-bounce" />
