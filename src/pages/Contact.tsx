@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, User, MessageSquare, CheckCircle2, Store, Send } from 'lucide-react';
 import { FormInput } from '../components/FormInput';
 import { Button } from '../components/Button';
+import { WhatsAppIcon } from '../utils/socialicons';
 
 const INFO_CARDS = [
   { icon: <Mail size={22} />, title: 'Email', content: <a href="mailto:craftostore.pk@gmail.com" className="text-gray-800 font-medium text-sm hover:text-accent">craftostore.pk@gmail.com</a> },
-  { icon: <Phone size={22} />, title: 'Phone / WhatsApp', content: <><p className="text-gray-800 font-semibold text-sm mb-2">0335 9115702</p><a href="https://wa.me/923359115702" target="_blank" rel="noreferrer" className="inline-flex items-center space-x-1.5 text-xs text-primary font-medium hover:underline"><MessageSquare size={13} /><span>Chat on WhatsApp</span></a></> },
+  { icon: <Phone size={22} />, title: 'Phone / WhatsApp', content: <><p className="text-gray-800 font-semibold text-sm mb-2">0335 9115702</p><a href="https://wa.me/923359115702" target="_blank" rel="noreferrer" className="inline-flex items-center space-x-1.5 text-xs text-primary font-medium hover:underline"><WhatsAppIcon size={16} /><span>Chat on WhatsApp</span></a></> },
   { icon: <MapPin size={22} />, title: 'Location', content: <p className="text-gray-700 text-sm max-w-[220px] leading-relaxed">Shop No 1, First Floor, Shanghai Plaza, China Market, Rawalpindi</p> }
 ];
 
