@@ -3,6 +3,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { publicRoutes } from "./routelist";
 import { Navbar } from "../components/Navbar";
 import {PageNotFound} from "../pages/PageNotFound";
+import { Footer } from "../components/Footer";
 
 const PublicLayout = () => (
   <>
@@ -10,6 +11,7 @@ const PublicLayout = () => (
     <main className="flex-1">
       <Outlet />
     </main>
+    <Footer/>
   </>
 );
 
