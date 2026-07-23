@@ -1,8 +1,8 @@
 import { lazy } from "react";
 
 const Home = lazy(() => import("../pages/Index"));
-const Contact = lazy(() => import("../components/Contact"));
-const Shop = lazy(() => import("../components/Shop"));
+const Contact = lazy(() => import("../pages/Contact"));
+const Shop = lazy(() => import("../pages/Shop"));
 
 export const publicRoutes = [
   {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, User, MessageSquare, CheckCircle2, Store, Send } from 'lucide-react';
-import { FormInput } from './FormInput';
-import { Button } from './Button';
+import { FormInput } from '../components/FormInput';
+import { Button } from '../components/Button';
 
 const INFO_CARDS = [
   { icon: <Mail size={22} />, title: 'Email', content: <a href="mailto:craftostore.pk@gmail.com" className="text-gray-800 font-medium text-sm hover:text-accent">craftostore.pk@gmail.com</a> },
