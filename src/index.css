@@ -8,6 +8,11 @@
   --color-text-dark: #2C3E35;      /* Dark Text for Drawer */
 }
 
+/* Keyframes definition */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
 
 @theme {
   --color-primary: var(--color-primary);
@@ -15,4 +20,24 @@
   --color-accent: var(--color-accent);
   --color-bg-light: var(--color-bg-light);
   --color-text-dark: var(--color-text-dark);
+
+  /* Animation register */
+  --animate-marquee: marquee 25s linear infinite;
+
+  /* Premium Custom Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
