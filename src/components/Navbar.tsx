@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import HeaderLogo from '../assets/images/headerlogo.png';
 import { Search, Heart, Phone, MapPin, Lock, AlignJustify } from 'lucide-react';
-import ShoppingBagIcon from './ShoppingBagIcon';
+import { ShoppingBagIcon } from '../utils/socialicons';
+
 
 interface NavLinkItem { name: string; path: string; }
 
-const NAV_LINKS: NavLinkItem[] = [
+const navmenu: NavLinkItem[] = [
   { name: 'Home', path: '/' },
   { name: 'Shop', path: '/shop' },
   { name: 'About', path: '/about' },
@@ -19,7 +20,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-bg-light text-primary px-4 md:px-12 py-3 md:py-3.5 min-h-[68px] md:min-h-[76px] flex items-center shadow-sm relative z-30">
+     <nav className="sticky top-0 z-30 bg-bg-light text-primary px-4 md:px-12 py-3 md:py-3.5 min-h-[68px] md:min-h-[76px] flex items-center shadow-sm">
         <div className="max-w-7xl w-full mx-auto flex items-center justify-between">
           <button onClick={() => setIsDrawerOpen(true)} className="md:hidden w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md active:scale-95" aria-label="Open Menu">
             <AlignJustify size={23} strokeWidth={1.8} />
@@ -34,15 +35,15 @@ export const Navbar = () => {
           </NavLink>
 
           <div className="hidden md:flex space-x-9 text-sm font-semibold tracking-wide">
-            {NAV_LINKS.map(({ name, path }) => (
-              <NavLink key={name} to={path} className={({ isActive }) => `transition-colors hover:text-accent ${isActive ? 'text-accent' : ''}`}>{name}</NavLink>
+            {navmenu.map(({ name, path }) => (
+              <NavLink key={name} to={path} className={({ isActive }) => `transition-colors hover:text-accent hover:underline hover:decoration-2 hover:underline-offset-4  ${isActive ? 'text-accent ' : ''}`}>{name}</NavLink>
             ))}
           </div>
 
-          <div className="flex items-center space-x-3 md:space-x-5">
-            <button className="hidden md:block hover:text-accent p-1 transition-colors" aria-label="Search"><Search size={25} strokeWidth={1.8} /></button>
-            <button className="hidden md:block hover:text-accent p-1 transition-colors" aria-label="Wishlist"><Heart size={25} strokeWidth={1.8} /></button>
-            <button className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-primary md:bg-transparent text-white md:text-primary flex items-center justify-center shadow-md md:shadow-none hover:text-accent transition-colors" aria-label="Cart">
+          <div className="flex items-center space-x-3 md:space-x-5 ">
+            <button className="hidden md:block hover:text-accent p-1 transition-colors cursor-pointer" aria-label="Search"><Search size={25} strokeWidth={1.8} /></button>
+            <button className="hidden md:block hover:text-accent p-1 transition-colors cursor-pointer" aria-label="Wishlist"><Heart size={25} strokeWidth={1.8} /></button>
+            <button className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-primary md:bg-transparent text-white md:text-primary flex items-center justify-center shadow-md md:shadow-none hover:text-accent transition-colors cursor-pointer" aria-label="Cart">
               <ShoppingBagIcon size={23} strokeWidth={1.8} />
             </button>
           </div>
@@ -61,7 +62,7 @@ export const Navbar = () => {
           </div>
 
           <div className="px-6 pt-6 flex flex-col space-y-9">
-            {NAV_LINKS.map(({ name, path }) => (
+            {navmenu.map(({ name, path }) => (
               <NavLink key={name} to={path} onClick={() => setIsDrawerOpen(false)} className={({ isActive }) => `text-sm font-bold tracking-wide transition-colors ${isActive ? 'text-accent' : 'text-text-dark hover:text-accent'}`}>{name}</NavLink>
             ))}
           </div>
