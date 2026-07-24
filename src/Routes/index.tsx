@@ -2,22 +2,26 @@ import { Suspense } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { publicRoutes } from "./routelist";
 import { Navbar } from "../components/Navbar";
-import {PageNotFound} from "../pages/PageNotFound";
 import { Footer } from "../components/Footer";
+import { PageNotFound } from "../pages/PageNotFound";
+import { AnnouncementBar } from "../pages/AnnouncementBar";
+import { PageLoader } from "../pages/PageLoader";
+
 
 const PublicLayout = () => (
-  <>
+  <div className="min-h-screen flex flex-col">
+    <AnnouncementBar />
     <Navbar />
     <main className="flex-1">
       <Outlet />
     </main>
-    <Footer/>
-  </>
+    <Footer />
+  </div>
 );
 
 export default function MainRouter() {
   return (
-    <Suspense fallback={<div className="h-12 w-12 rounded-full"></div>}>
+    <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route element={<PublicLayout />}>
           {publicRoutes.map(({ path, element }) => (
