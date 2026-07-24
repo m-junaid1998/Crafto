@@ -33,11 +33,11 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <span className="text-[11px] font-medium text-gray-500 block">{product.sku}</span>
       </NavLink>
 
-      <div className="flex items-center justify-center gap-2 text-[12px] mb-3">
-        <span className="text-red-500 line-through font-medium">Rs.{product.originalPrice.toLocaleString()}</span>
-        <span className="text-[#055038] font-bold">Rs.{product.discountedPrice.toLocaleString()}</span>
-        <span className="text-pink-500 font-medium text-[11px]">Save {product.discountPercentage}%</span>
-      </div>
+     <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[12px] mb-3">
+       <span className="text-red-500 line-through font-medium"> Rs.{product.originalPrice.toLocaleString()}</span>
+       <span className="w-full sm:w-auto text-[#055038] font-bold">Rs.{product.discountedPrice.toLocaleString()}</span>
+       <span className="text-pink-500 font-medium text-[11px]">Save {product.discountPercentage}% </span>
+     </div>
 
       <div className="flex flex-wrap justify-center gap-1.5 w-full">
         {product.sizes.map((s) => (
