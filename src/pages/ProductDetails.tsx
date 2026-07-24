@@ -17,7 +17,6 @@ interface ProductDetailsProps {
 }
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
-  // Sample fallback data if props are empty
   const defaultProduct = {
     id: 'wn4489',
     title: 'Blue Women Moccasin WN4489',
