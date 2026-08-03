@@ -19,13 +19,25 @@ const categories = [
 ];
 
 export const CategorySection: React.FC = () => (
-  <section className="py-8 bg-white border-b border-gray-100">
+  <section className="py-8 bg-white border-b border-gray-100" aria-label="Product categories">
     <div className="w-full overflow-x-auto no-scrollbar px-4 sm:px-8">
       <div className="flex items-center gap-6 sm:gap-8 w-max mx-auto py-2">
         {categories.map((item) => (
-          <NavLink key={item.id} to={item.link} className="flex flex-col items-center group shrink-0 transition-transform duration-300 hover:scale-105">
+          <NavLink 
+            key={item.id} 
+            to={item.link} 
+            aria-label={`Browse ${item.label}`}
+            className="flex flex-col items-center group shrink-0 transition-transform duration-300 hover:scale-105"
+          >
             <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden shadow-sm mb-2.5 p-[1.5px] border border-transparent group-hover:border-[#D4A359] group-hover:ring-2 group-hover:ring-[#D4A359]/50 group-hover:shadow-[0_0_16px_rgba(212,163,89,0.5)] transition-all duration-300">
-              <img src={item.image} alt={item.label} className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" />
+              <img 
+                src={item.image} 
+                alt="" 
+                width="112"
+                height="112"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" 
+              />
             </div>
             <span className="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-[#D4A359] transition-colors text-center">{item.label}</span>
           </NavLink>

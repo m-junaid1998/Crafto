@@ -1,66 +1,63 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Heart, ShoppingBag, Zap } from 'lucide-react';
 
-export interface Product {
-  id: string | number; title: string; sku: string; originalPrice: number;
-  discountedPrice: number; discountPercentage: number; images: string[];
-  sizes: (string | number)[]; colors?: string[]; description?: string; isSale?: boolean;
-}
+export interface Product { id: string | number; title: string; sku: string; originalPrice: number; discountedPrice: number; discountPercentage: number; images: string[]; sizes: (string | number)[]; isSale?: boolean; }
 
 export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(product.images?.[0] || '');
   const [selectedSize, setSelectedSize] = useState<(string | number) | null>(null);
-
-  const goToDetails = () => navigate(`/product/${product.id}`);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   return (
-    <div className="flex flex-col items-center group w-full bg-white text-center font-sans p-2 border border-gray-100 hover:shadow-md transition-shadow">
-      <div onClick={goToDetails} className="relative w-full aspect-[3/4] overflow-hidden bg-gray-50 mb-3 cursor-pointer">
-        <img src={selectedImage} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-        {product.isSale && <span className="absolute top-0 right-0 bg-[#E6007E] text-white text-[11px] font-bold uppercase px-2.5 py-1">Sale</span>}
-      </div>
+    <article className="group flex flex-col items-center w-full bg-[var(--color-bg-light)] text-center font-sans p-3 border border-[var(--color-border)] hover:shadow-lg transition-all rounded-xl relative">
+      <button type="button" aria-label="Add to Wishlist" onClick={() => setIsWishlisted(!isWishlisted)} className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-[var(--color-primary)] hover:text-[var(--color-danger)] transition-colors shadow-sm cursor-pointer">
+        <Heart size={15} className={isWishlisted ? 'fill-[var(--color-danger)] text-[var(--color-danger)]' : ''} />
+      </button>
+
+      <button type="button" onClick={() => navigate(`/product/${product.id}`)} aria-label={`View ${product.title}`} className="relative w-full aspect-[3/4] overflow-hidden bg-[var(--color-card-bg)] mb-2.5 rounded-lg cursor-pointer">
+        <img src={selectedImage} alt={product.title} loading="lazy" width="300" height="400" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        {product.isSale && <span className="absolute top-2 left-2 bg-[var(--color-danger)] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-xs">Sale</span>}
+      </button>
 
       {product.images?.length > 1 && (
-        <div className="flex flex-wrap gap-1.5 mb-3 justify-center max-h-20 overflow-y-auto px-1">
+        <div className="flex flex-wrap gap-1 mb-2 justify-center max-h-16 overflow-y-auto no-scrollbar">
           {product.images.map((img, idx) => (
-            <button 
-              key={idx} 
-              type="button"
-              aria-label={`Select product image ${idx + 1}`} /* 👈 Added accessible name */
-              onClick={(e) => { e.stopPropagation(); setSelectedImage(img); }} 
-              className={`w-7 h-9 border p-0.5 overflow-hidden shrink-0 ${selectedImage === img ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'}`}
-            >
-              <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+            <button key={idx} type="button" aria-label={`Select thumbnail ${idx + 1}`} onClick={(e) => { e.stopPropagation(); setSelectedImage(img); }} className={`w-7 h-9 border p-0.5 overflow-hidden shrink-0 rounded-xs transition-colors cursor-pointer ${selectedImage === img ? 'border-[var(--color-primary)] ring-1 ring-[var(--color-primary)]' : 'border-[var(--color-border)] hover:border-[var(--color-muted)]'}`}>
+              <img src={img} alt="" width="28" height="36" className="w-full h-full object-cover rounded-xs" />
             </button>
           ))}
         </div>
       )}
 
-      <div onClick={goToDetails} className="cursor-pointer mb-2">
-        <h3 className="text-[12px] font-semibold text-gray-700 uppercase leading-snug hover:text-[#055038] line-clamp-2">{product.title}</h3>
-        <span className="text-[11px] font-medium text-gray-500 block">{product.sku}</span>
+      <button type="button" onClick={() => navigate(`/product/${product.id}`)} className="cursor-pointer mb-1.5 text-center w-full">
+        <h3 className="text-xs font-bold text-[var(--color-text-dark)] uppercase leading-snug hover:text-[var(--color-accent)] line-clamp-2 transition-colors">{product.title}</h3>
+        <span className="text-[10px] font-semibold text-[var(--color-muted)] block mt-0.5">{product.sku}</span>
+      </button>
+
+      <div className="flex items-center justify-center gap-2 text-xs mb-2.5">
+        <span className="text-[var(--color-muted)] line-through">Rs.{product.originalPrice?.toLocaleString()}</span>
+        <span className="text-[var(--color-primary)] font-bold text-sm">Rs.{product.discountedPrice?.toLocaleString()}</span>
+        <span className="text-[var(--color-accent)] font-bold text-[11px]">-{product.discountPercentage}%</span>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[12px] mb-3">
-        <span className="text-red-500 line-through font-medium">Rs.{product.originalPrice?.toLocaleString()}</span>
-        <span className="text-[#055038] font-bold">Rs.{product.discountedPrice?.toLocaleString()}</span>
-        <span className="w-full sm:w-auto text-pink-500 font-medium text-[11px]">Save {product.discountPercentage}%</span>
-      </div>
+      {product.sizes?.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-1 w-full mb-2.5">
+          {product.sizes.map((s) => (
+            <button key={s} type="button" aria-label={`Select size ${s}`} onClick={() => setSelectedSize(s)} className={`min-w-[26px] h-6 px-1.5 text-[10px] border font-semibold flex items-center justify-center transition-colors rounded-xs cursor-pointer ${selectedSize === s ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white' : 'border-[var(--color-border)] text-[var(--color-text-dark)] hover:border-[var(--color-primary)]'}`}>{s}</button>
+          ))}
+        </div>
+      )}
 
-      <div className="flex flex-wrap justify-center gap-1.5 w-full">
-        {product.sizes?.map((s) => (
-          <button 
-            key={s} 
-            type="button"
-            aria-label={`Select size ${s}`} /* 👈 Added accessible name for size buttons */
-            onClick={() => setSelectedSize(s)} 
-            className={`min-w-[28px] h-7 px-2 text-[11px] border font-medium flex items-center justify-center whitespace-nowrap transition-colors ${selectedSize === s ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 text-gray-600 hover:border-gray-900'}`}
-          >
-            {s}
-          </button>
-        ))}
+      <div className="grid grid-cols-2 gap-2 w-full pt-2 border-t border-[var(--color-border)]">
+        <button type="button" onClick={(e) => { e.stopPropagation(); alert(`Added ${product.title} to cart`); }} className="w-full py-2 px-2 bg-[var(--color-card-bg)] hover:bg-[var(--color-border)] text-[var(--color-text-dark)] font-bold text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1 transition-colors cursor-pointer">
+          <ShoppingBag size={12} /><span>Cart</span>
+        </button>
+        <button type="button" onClick={(e) => { e.stopPropagation(); navigate('/checkout'); }} className="w-full py-2 px-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white font-bold text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1 transition-colors shadow-xs cursor-pointer">
+          <Zap size={12} className="text-[var(--color-accent)]" /><span>Buy Now</span>
+        </button>
       </div>
-    </div>
+    </article>
   );
 };

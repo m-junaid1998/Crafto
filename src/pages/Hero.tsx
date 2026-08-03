@@ -18,10 +18,26 @@ export const Hero: React.FC = () => {
   const slide = slides[curr];
 
   return (
-    <section className="relative w-full h-[80vh] min-h-[500px] max-h-[700px] overflow-hidden bg-[var(--color-primary)] text-white select-none">
+    <section 
+      aria-label="Hero Carousel" 
+      aria-roledescription="carousel" 
+      className="relative w-full h-[80vh] min-h-[500px] max-h-[700px] overflow-hidden bg-[var(--color-primary)] text-white select-none"
+    >
       {slides.map((s, i) => (
-        <div key={s.id} className={`absolute inset-0 transition-opacity duration-1000 ${i === curr ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
-          <img src={s.imageUrl} alt={s.title} className="w-full h-full object-cover object-center scale-105" />
+        <div 
+          key={s.id} 
+          aria-hidden={i !== curr}
+          aria-roledescription="slide"
+          aria-label={`Slide ${i + 1} of ${slides.length}`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${i === curr ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        >
+          <img 
+            src={s.imageUrl} 
+            alt={s.title} 
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchPriority={i === 0 ? "high" : "low"}
+            className="w-full h-full object-cover object-center scale-105" 
+          />
           <div className="absolute inset-0 bg-black/50" />
         </div>
       ))}
@@ -32,21 +48,38 @@ export const Hero: React.FC = () => {
             {slide.title} <span className="text-[var(--color-accent)] italic font-serif font-normal block sm:inline">{slide.highlightText}</span>
           </h1>
           <p className="text-gray-200 text-xs sm:text-sm leading-relaxed mb-6 font-light">{slide.description}</p>
-          <NavLink to={slide.buttonLink} className="inline-block bg-white text-[var(--color-primary)] hover:bg-[var(--color-accent)] hover:text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95">
+          <NavLink 
+            to={slide.buttonLink} 
+            aria-label={`${slide.buttonText} - ${slide.title}`}
+            className="inline-block bg-white text-[var(--color-primary)] hover:bg-[var(--color-accent)] hover:text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+          >
             {slide.buttonText}
           </NavLink>
         </div>
       </div>
 
       {[-1, 1].map((step) => (
-        <button key={step} onClick={() => setCurr((p) => (p + step + slides.length) % slides.length)} className={`hidden md:flex absolute ${step === -1 ? 'left-6' : 'right-6'} top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/30 hover:bg-[var(--color-accent)] text-white backdrop-blur-md border border-white/10 transition-all cursor-pointer items-center justify-center`}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d={step === -1 ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"} /></svg>
+        <button 
+          key={step} 
+          type="button"
+          aria-label={step === -1 ? "Previous slide" : "Next slide"}
+          onClick={() => setCurr((p) => (p + step + slides.length) % slides.length)} 
+          className={`hidden md:flex absolute ${step === -1 ? 'left-6' : 'right-6'} top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/30 hover:bg-[var(--color-accent)] text-white backdrop-blur-md border border-white/10 transition-all cursor-pointer items-center justify-center`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d={step === -1 ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"} /></svg>
         </button>
       ))}
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2.5">
         {slides.map((_, i) => (
-          <button key={i} onClick={() => setCurr(i)} className={`h-2 rounded-full transition-all duration-300 ${i === curr ? 'w-8 bg-[var(--color-accent)]' : 'w-2 bg-white/50 hover:bg-white'}`} />
+          <button 
+            key={i} 
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === curr ? "true" : "false"}
+            onClick={() => setCurr(i)} 
+            className={`h-2 rounded-full transition-all duration-300 ${i === curr ? 'w-8 bg-[var(--color-accent)]' : 'w-2 bg-white/50 hover:bg-white'}`} 
+          />
         ))}
       </div>
     </section>
