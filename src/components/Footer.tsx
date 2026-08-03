@@ -6,6 +6,7 @@ const QUICK_LINKS = [
   { name: "Contact", path: "/contact" },
   { name: "Track Order", path: "/track-order" },
   { name: "Privacy Policy", path: "/privacy" },
+  { name: "Terms of Service", path: "/terms" },
 ];
 
 const CATEGORIES = [
@@ -32,7 +33,6 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-14">
           
-          {/* Brand Info */}
           <div className="md:col-span-5 lg:col-span-6 pr-0 lg:pr-12">
             <h2 className="font-serif text-3xl font-bold text-[var(--color-text-dark)] mb-4 tracking-tight">
               Home N More Studio
@@ -57,7 +57,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className="md:col-span-3 lg:col-span-3">
             <h3 className="font-serif text-lg font-bold text-[var(--color-text-dark)] mb-5">
               Quick Links
@@ -73,7 +72,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Categories */}
           <div className="md:col-span-4 lg:col-span-3">
             <h3 className="font-serif text-lg font-bold text-[var(--color-text-dark)] mb-5">
               Categories
@@ -92,13 +90,9 @@ export const Footer = () => {
 
         <div className="border-t border-[var(--color-border)] pt-8" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-muted)] font-normal">
-          <p>© {new Date().getFullYear()} Home N More Studio. All rights reserved.</p>
-          <div className="flex items-center space-x-6 tracking-wider uppercase text-[11px] font-semibold text-[var(--color-muted)]">
-            <Link to="/privacy" className="hover:text-[var(--color-text-dark)] transition-colors">PRIVACY POLICY</Link>
-            <Link to="/terms" className="hover:text-[var(--color-text-dark)] transition-colors">TERMS OF SERVICE</Link>
-          </div>
-        </div>
+       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-[var(--color-muted)] font-normal text-center">
+        <p>© {new Date().getFullYear()} Home N More Studio. All rights reserved.</p>
+       </div>
       </div>
     </footer>
   );
