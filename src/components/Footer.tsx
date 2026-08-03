@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FacebookIcon, InstagramIcon, TikTokIcon, TwitterIcon, WhatsAppIcon, MapPinIcon } from "../utils/socialicons";
 
 const QUICK_LINKS = [
-  { name: "About Us", path: "/about" },
+  { name: "About Us", path: "/aboutus" },
   { name: "Contact", path: "/contact" },
   { name: "Track Order", path: "/track-order" },
   { name: "Privacy Policy", path: "/privacy" },
