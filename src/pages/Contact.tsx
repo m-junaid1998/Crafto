@@ -64,7 +64,7 @@ const Contact = () => {
 
           <div className="lg:col-span-7 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-2xl p-8 md:p-12 flex flex-col items-center justify-center text-center">
             <div className="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center mb-6"><Store size={32} /></div>
-            <h2 className="font-serif text-2xl md:text-3xl font-bold text-[var(--color-text-dark)] mb-8">Why Shop with Home N More?</h2>
+            <h2 className="font-serif text-2xl md:text-3xl font-bold text-[var(--color-text-dark)] mb-8">Why Shop with Home N More Studio?</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8 text-left w-full max-w-lg">
               {FEATS.map((f, i) => (

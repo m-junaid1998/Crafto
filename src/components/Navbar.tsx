@@ -7,7 +7,7 @@ import { ShoppingBagIcon } from '../utils/socialicons';
 const NAV_MENU = [
   { name: 'Home', path: '/' },
   { name: 'Shop', path: '/shop' },
-  { name: 'About', path: '/about' },
+  { name: 'About', path: '/aboutus' },
   { name: 'Contact', path: '/contact' },
   { name: 'Track Order', path: '/track-order' },
 ];
