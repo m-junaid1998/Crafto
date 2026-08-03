@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Fragment, Suspense } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { publicRoutes } from "./routelist";
 import { Navbar } from "../components/Navbar";
@@ -9,16 +9,15 @@ import { PageLoader } from "../pages/PageLoader";
 
 
 const PublicLayout = () => (
-  <div className="min-h-screen flex flex-col">
+  <Fragment>
     <AnnouncementBar />
     <Navbar />
     <main className="flex-1">
       <Outlet />
     </main>
     <Footer />
-  </div>
+  </Fragment>
 );
-
 export default function MainRouter() {
   return (
     <Suspense fallback={<PageLoader />}>
