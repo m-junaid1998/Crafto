@@ -92,9 +92,8 @@ export const Footer = () => {
 
         <div className="border-t border-[var(--color-border)] pt-8" />
 
-        {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-muted)] font-normal">
-          <p>© {new Date().getFullYear()} Home N More. Premium Home Decor & Fragrances.</p>
+          <p>© {new Date().getFullYear()} Home N More</p>
           <div className="flex items-center space-x-6 tracking-wider uppercase text-[11px] font-semibold text-[var(--color-muted)]">
             <Link to="/privacy" className="hover:text-[var(--color-text-dark)] transition-colors">PRIVACY POLICY</Link>
             <Link to="/terms" className="hover:text-[var(--color-text-dark)] transition-colors">TERMS OF SERVICE</Link>
