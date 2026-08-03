@@ -16,58 +16,60 @@ export const CustomerReviews: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.rating || !form.name || !form.comment) return;
-    const newRev = { id: Date.now().toString(), name: form.name, rating: form.rating, title: form.title, comment: form.comment, date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) };
-    setReviews([newRev, ...reviews]);
+    setReviews([{ id: Date.now().toString(), name: form.name, rating: form.rating, title: form.title, comment: form.comment, date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }, ...reviews]);
     setForm({ isOpen: false, rating: 0, hover: 0, name: '', title: '', comment: '' });
   };
 
   const renderStars = (count: number, interactive = false) => (
     <div className="flex gap-1">
       {[1, 2, 3, 4, 5].map((s) => (
-        <button key={s} type={interactive ? 'button' : 'submit'} disabled={!interactive} onClick={() => interactive && setForm((p) => ({ ...p, rating: s }))} onMouseEnter={() => interactive && setForm((p) => ({ ...p, hover: s }))} onMouseLeave={() => interactive && setForm((p) => ({ ...p, hover: 0 }))} className={`${interactive ? 'cursor-pointer text-xl' : 'cursor-default text-xs'} ${s <= (form.hover || count) ? 'text-[var(--color-accent)]' : 'text-gray-300'}`}>★</button>
+        <button key={s} type={interactive ? 'button' : 'submit'} disabled={!interactive} onClick={() => interactive && setForm((p) => ({ ...p, rating: s }))} onMouseEnter={() => interactive && setForm((p) => ({ ...p, hover: s }))} onMouseLeave={() => interactive && setForm((p) => ({ ...p, hover: 0 }))} className={`${interactive ? 'cursor-pointer text-2xl sm:text-xl' : 'cursor-default text-xs'} ${s <= (form.hover || count) ? 'text-[var(--color-accent)]' : 'text-gray-300'}`}>★</button>
       ))}
     </div>
   );
 
   return (
     <div className="w-full py-6 font-sans text-[var(--color-text-dark)]">
-      <div className="flex justify-between items-start mb-6">
+      {/* Header Section */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
         <div>
-          <h2 className="text-2xl font-serif text-[var(--color-text-dark)] mb-1">Customer Reviews</h2>
-          <div className="flex items-center gap-2 text-xs">{renderStars(Math.round(Number(avg)))}{avg} out of 5 <span className="text-gray-500">({total} reviews)</span></div>
+          <h2 className="text-xl sm:text-2xl font-serif font-bold text-[var(--color-text-dark)] mb-1">Customer Reviews</h2>
+          <div className="flex flex-wrap items-center gap-2 text-xs">{renderStars(Math.round(Number(avg)))}<span className="font-bold">{avg} out of 5</span><span className="text-gray-500">({total} reviews)</span></div>
         </div>
-        <button onClick={() => setForm((p) => ({ ...p, isOpen: !p.isOpen }))} className="px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-xl border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all">{form.isOpen ? 'Cancel' : 'Write a review'}</button>
+        <button onClick={() => setForm((p) => ({ ...p, isOpen: !p.isOpen }))} className="w-full sm:w-auto px-5 py-2.5 sm:py-2 text-xs font-bold uppercase tracking-wider rounded-xl border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all text-center">{form.isOpen ? 'Cancel' : 'Write a review'}</button>
       </div>
 
       <div className="space-y-2 mb-8 max-w-lg">
-        {[5, 4, 3, 2, 1].map((s) => (
-          <div key={s} className="flex items-center gap-3 text-xs text-gray-500 font-medium">
-            <span className="w-10 shrink-0">{s} star</span>
-            <div className="flex-1 h-2 bg-gray-200/60 rounded-full overflow-hidden"><div className="h-full bg-[var(--color-accent)] rounded-full transition-all duration-300" style={{ width: `${total ? (reviews.filter((r) => r.rating === s).length / total) * 100 : 0}%` }} /></div>
-            <span className="w-4 text-right font-bold text-[var(--color-text-dark)]">{reviews.filter((r) => r.rating === s).length}</span>
-          </div>
-        ))}
+        {[5, 4, 3, 2, 1].map((s) => {
+          const count = reviews.filter((r) => r.rating === s).length;
+          return (
+            <div key={s} className="flex items-center gap-2 sm:gap-3 text-xs text-gray-500 font-medium">
+              <span className="w-10 shrink-0">{s} star</span>
+              <div className="flex-1 h-2 bg-gray-200/60 rounded-full overflow-hidden"><div className="h-full bg-[var(--color-accent)] rounded-full transition-all duration-300" style={{ width: `${total ? (count / total) * 100 : 0}%` }} /></div>
+              <span className="w-4 text-right font-bold text-[var(--color-text-dark)]">{count}</span>
+            </div>
+          );
+        })}
       </div>
-
       {form.isOpen && (
-        <form onSubmit={handleSubmit} className="border-t border-gray-200/60 pt-6 mb-8 bg-[var(--color-bg-light)] p-6 rounded-2xl space-y-4">
-          <h3 className="text-lg font-serif text-[var(--color-text-dark)]">Share your experience</h3>
+        <form onSubmit={handleSubmit} className="border-t border-gray-200/60 pt-6 mb-8 bg-[var(--color-bg-light)] p-4 sm:p-6 rounded-2xl space-y-4">
+          <h3 className="text-base sm:text-lg font-serif font-bold text-[var(--color-text-dark)]">Share your experience</h3>
           <div><label className="text-xs font-bold uppercase tracking-wider text-gray-600 block mb-1">Your Rating</label>{renderStars(form.rating, true)}</div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <input type="text" required placeholder="Your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-[var(--color-text-dark)] focus:outline-none focus:border-[var(--color-primary)]" />
             <input type="text" placeholder="Review Title (Optional)" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-[var(--color-text-dark)] focus:outline-none focus:border-[var(--color-primary)]" />
           </div>
           <textarea required rows={4} placeholder="Tell us what you loved..." value={form.comment} onChange={(e) => setForm({ ...form, comment: e.target.value })} className="w-full bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-[var(--color-text-dark)] focus:outline-none focus:border-[var(--color-primary)] resize-y" />
-          <div className="flex justify-end"><button type="submit" className="px-6 py-3 bg-[var(--color-primary)] text-white text-xs font-bold uppercase tracking-wider rounded-xl">Submit review</button></div>
+          <div className="flex justify-end"><button type="submit" className="w-full sm:w-auto px-6 py-3 bg-[var(--color-primary)] text-white text-xs font-bold uppercase tracking-wider rounded-xl hover:bg-[var(--color-primary-hover)] transition-colors">Submit review</button></div>
         </form>
       )}
 
       <div className="divide-y divide-gray-200/60 border-t border-gray-200/60">
         {reviews.map((rev) => (
-          <div key={rev.id} className="py-5 flex gap-4">
-            <div className="w-9 h-9 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center text-xs font-bold shrink-0">{rev.name.split(' ').map((n) => n[0]).join('').toUpperCase()}</div>
+          <div key={rev.id} className="py-4 sm:py-5 flex gap-3 sm:gap-4">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center text-xs font-bold shrink-0">{rev.name.split(' ').map((n) => n[0]).join('').toUpperCase()}</div>
             <div className="flex-1">
-              <div className="flex justify-between items-baseline"><h4 className="text-xs font-bold text-[var(--color-text-dark)]">{rev.name}</h4><span className="text-[11px] font-medium text-gray-400">{rev.date}</span></div>
+              <div className="flex justify-between items-baseline gap-2"><h4 className="text-xs font-bold text-[var(--color-text-dark)]">{rev.name}</h4><span className="text-[10px] sm:text-[11px] font-medium text-gray-400 shrink-0">{rev.date}</span></div>
               <div className="my-1">{renderStars(rev.rating)}</div>
               {rev.title && <h5 className="text-xs font-bold text-[var(--color-text-dark)] mt-1">{rev.title}</h5>}
               <p className="text-xs text-gray-600 mt-1 leading-relaxed">{rev.comment}</p>
