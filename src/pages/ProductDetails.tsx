@@ -35,7 +35,7 @@ export default function ProductDetails() {
             </div>
           )}
           <div className="w-full aspect-square sm:aspect-[4/5] bg-[var(--color-bg-light)] rounded-2xl relative overflow-hidden">
-            {data.isSale && <span className="absolute top-4 left-4 bg-[var(--color-accent)] text-white text-xs font-bold uppercase px-3 py-1.5 rounded-full z-10">Sale</span>}
+            {data.isSale && <span className="absolute top-2 left-2 bg-[var(--color-accent)] text-white text-xs font-bold uppercase px-3 py-1.5 rounded-full z-10">Sale</span>}
             <img src={state.img || images[0]} alt={data.title} className="w-full h-full object-cover" />
           </div>
         </div>

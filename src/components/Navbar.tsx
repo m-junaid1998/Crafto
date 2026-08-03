@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import HeaderLogo from '../assets/images/headerlogo.png';
+import HeaderLogo from '../assets/images/logo.webp';
 import { Search, Heart, Phone, MapPin, Lock, AlignJustify, X } from 'lucide-react';
 import { ShoppingBagIcon } from '../utils/socialicons';
 
