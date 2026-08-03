@@ -1,17 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #055038;        /* Forest Green */
-  --color-primary-hover: #033b29;  /* Darker Green for Hover */
-  --color-accent: #D4A359;         /* Gold Accent */
-  --color-bg-light: #FAF8F5;       /* Cream Background */
-  --color-text-dark: #2C3E35;      /* Dark Text for Drawer */
+  --color-primary: #055038; /* Forest Green */
+  --color-primary-hover: #033b29; /* Darker Green for Hover */
+  --color-accent: #d4a359; /* Gold Accent */
+  --color-bg-light: #faf8f5; /* Cream Background */
+  --color-text-dark: #2c3e35; /* Dark Text for Drawer */
 }
 
-/* Keyframes definition */
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {transform: translateX(0%)}
+  100% {transform: translateX(-50%)}
 }
 
 @theme {
@@ -20,13 +19,10 @@
   --color-accent: var(--color-accent);
   --color-bg-light: var(--color-bg-light);
   --color-text-dark: var(--color-text-dark);
-
-  /* Animation register */
   --animate-marquee: marquee 25s linear infinite;
 
-  /* Premium Custom Fonts */
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
 body {
@@ -36,8 +32,8 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-/* Hide scrollbar for IE, Edge and Firefox */
+
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }

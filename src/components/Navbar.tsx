@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   return (
     <>
-     <nav className="sticky top-0 z-30 bg-bg-light text-primary px-4 md:px-12 py-3 md:py-3.5 min-h-[68px] md:min-h-[76px] flex items-center shadow-sm">
+     <nav className="sticky top-0 z-999 bg-bg-light text-primary px-4 md:px-12 py-3 md:py-3.5 min-h-[68px] md:min-h-[76px] flex items-center shadow-sm">
         <div className="max-w-7xl w-full mx-auto flex items-center justify-between">
           <button onClick={() => setIsDrawerOpen(true)} className="md:hidden w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md active:scale-95" aria-label="Open Menu">
             <AlignJustify size={23} strokeWidth={1.8} />
