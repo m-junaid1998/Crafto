@@ -9,12 +9,12 @@ const QUICK_LINKS = [
 ];
 
 const CATEGORIES = [
-  { name: "Vases", path: "/category/vases" },
-  { name: "Jewelry Boxes", path: "/category/jewelry-boxes" },
-  { name: "Lamps", path: "/category/lamps" },
-  { name: "Tables", path: "/category/tables" },
-  { name: "Candle Stands", path: "/category/candle-stands" },
-  { name: "Planters", path: "/category/planters" },
+  { name: "Home Decor", path: "/category/home-decor" },
+  { name: "Luxury Perfumes", path: "/category/perfumes" },
+  { name: "Attars & Oils", path: "/category/attars" },
+  { name: "Candle Stands & Vases", path: "/category/vases-candles" },
+  { name: "Room Sprays & Diffusers", path: "/category/diffusers" },
+  { name: "Accent Furniture", path: "/category/tables" },
 ];
 
 const SOCIAL_ICONS = [
@@ -30,17 +30,17 @@ export const Footer = () => {
   return (
     <footer className="bg-[var(--color-bg-light)] text-[var(--color-text-dark)] font-sans border-t border-[var(--color-border)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-14">
           
           {/* Brand Info */}
           <div className="md:col-span-5 lg:col-span-6 pr-0 lg:pr-12">
             <h2 className="font-serif text-3xl font-bold text-[var(--color-text-dark)] mb-4 tracking-tight">
-              Crafto
+              Home N More
             </h2>
             <p className="text-[var(--color-muted)] text-sm leading-relaxed max-w-md mb-6 font-normal">
-              Crafto is Pakistan's premier boutique marketplace for high-end,
-              authentic handicrafts. We curate the finest works from artisans
-              across the nation.
+              Your destination for luxury home aesthetics and artisanal fragrances. 
+              Elevate your living spaces with our curated collection of home decor, 
+              exquisite perfumes, and premium scents.
             </p>
 
             <div className="flex items-center space-x-2.5">
@@ -62,13 +62,10 @@ export const Footer = () => {
             <h3 className="font-serif text-lg font-bold text-[var(--color-text-dark)] mb-5">
               Quick Links
             </h3>
-            <ul className="space-y-3.5 text-sm font-medium">
+            <ul className="space-y-3 text-sm font-medium">
               {QUICK_LINKS.map((link, i) => (
                 <li key={i}>
-                  <Link
-                    to={link.path}
-                    className="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
-                  >
+                  <Link to={link.path} className="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -81,13 +78,10 @@ export const Footer = () => {
             <h3 className="font-serif text-lg font-bold text-[var(--color-text-dark)] mb-5">
               Categories
             </h3>
-            <ul className="space-y-3.5 text-sm font-medium">
+            <ul className="space-y-3 text-sm font-medium">
               {CATEGORIES.map((cat, i) => (
                 <li key={i}>
-                  <Link
-                    to={cat.path}
-                    className="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
-                  >
+                  <Link to={cat.path} className="text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors">
                     {cat.name}
                   </Link>
                 </li>
@@ -100,20 +94,10 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-muted)] font-normal">
-          <p>© {new Date().getFullYear()} Crafto. Authentic Craftsmanship from Pakistan.</p>
+          <p>© {new Date().getFullYear()} Home N More. Premium Home Decor & Fragrances.</p>
           <div className="flex items-center space-x-6 tracking-wider uppercase text-[11px] font-semibold text-[var(--color-muted)]">
-            <Link
-              to="/privacy"
-              className="hover:text-[var(--color-text-dark)] transition-colors"
-            >
-              PRIVACY POLICY
-            </Link>
-            <Link 
-              to="/terms" 
-              className="hover:text-[var(--color-text-dark)] transition-colors"
-            >
-              TERMS OF SERVICE
-            </Link>
+            <Link to="/privacy" className="hover:text-[var(--color-text-dark)] transition-colors">PRIVACY POLICY</Link>
+            <Link to="/terms" className="hover:text-[var(--color-text-dark)] transition-colors">TERMS OF SERVICE</Link>
           </div>
         </div>
       </div>

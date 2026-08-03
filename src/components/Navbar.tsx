@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import HeaderLogo from '../assets/images/logo.webp';
+import HeaderLogo from '../assets/images/logo.png';
 import { Search, Heart, Phone, MapPin, Lock, AlignJustify, X } from 'lucide-react';
 import { ShoppingBagIcon } from '../utils/socialicons';
 
@@ -26,7 +26,7 @@ export const Navbar = () => {
           </button>
 
           <NavLink to="/" className="flex items-center cursor-pointer">
-            <img src={HeaderLogo} alt="Logo" className="h-8 md:h-10 w-auto object-contain" />
+            <img src={HeaderLogo} alt="Logo" className="h-10 w-auto object-contain" />
           </NavLink>
 
           <div className="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
@@ -57,7 +57,7 @@ export const Navbar = () => {
         <div>
           {/* Drawer Header with Close Button */}
           <div className="bg-[var(--color-primary)] text-white px-5 py-4 flex items-center justify-between shadow-sm">
-            <img src={HeaderLogo} alt="Logo" className="h-7 w-auto object-contain brightness-0 invert" />
+            <img src={HeaderLogo} alt="Logo" className="h-10 w-auto object-contain brightness-0 invert" />
             <button onClick={() => setIsDrawerOpen(false)} className="p-1 hover:bg-white/10 rounded-lg transition-colors" aria-label="Close Menu">
               <X size={22} strokeWidth={2} />
             </button>
