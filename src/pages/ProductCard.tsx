@@ -24,8 +24,14 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       {product.images?.length > 1 && (
         <div className="flex flex-wrap gap-1.5 mb-3 justify-center max-h-20 overflow-y-auto px-1">
           {product.images.map((img, idx) => (
-            <button key={idx} onClick={(e) => { e.stopPropagation(); setSelectedImage(img); }} className={`w-7 h-9 border p-0.5 overflow-hidden shrink-0 ${selectedImage === img ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'}`}>
-              <img src={img} alt="" className="w-full h-full object-cover" />
+            <button 
+              key={idx} 
+              type="button"
+              aria-label={`Select product image ${idx + 1}`} /* 👈 Added accessible name */
+              onClick={(e) => { e.stopPropagation(); setSelectedImage(img); }} 
+              className={`w-7 h-9 border p-0.5 overflow-hidden shrink-0 ${selectedImage === img ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'}`}
+            >
+              <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
             </button>
           ))}
         </div>
@@ -44,7 +50,15 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
       <div className="flex flex-wrap justify-center gap-1.5 w-full">
         {product.sizes?.map((s) => (
-          <button key={s} onClick={() => setSelectedSize(s)} className={`min-w-[28px] h-7 px-2 text-[11px] border font-medium flex items-center justify-center whitespace-nowrap transition-colors ${selectedSize === s ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 text-gray-600 hover:border-gray-900'}`}>{s}</button>
+          <button 
+            key={s} 
+            type="button"
+            aria-label={`Select size ${s}`} /* 👈 Added accessible name for size buttons */
+            onClick={() => setSelectedSize(s)} 
+            className={`min-w-[28px] h-7 px-2 text-[11px] border font-medium flex items-center justify-center whitespace-nowrap transition-colors ${selectedSize === s ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 text-gray-600 hover:border-gray-900'}`}
+          >
+            {s}
+          </button>
         ))}
       </div>
     </div>
