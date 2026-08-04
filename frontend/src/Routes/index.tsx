@@ -20,22 +20,23 @@ const PublicLayout = () => (
     <Footer />
   </Fragment>
 );
+
+
 export default function MainRouter() {
   return (
-    <Suspense fallback={<PageLoader />}>
+    <Suspense fallback={<PageLoader/>}>
       <Routes>
-        <Route element={<PublicLayout />}>
+        <Route element={<PublicLayout/>}>
           {publicRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}
         </Route>
-
-        <Route element={<AdminLayout />}>
+        <Route element={<AdminLayout/>}>
           {adminRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}
         </Route>
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
     </Suspense>
   );
