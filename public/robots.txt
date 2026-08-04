@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Block non-public / state-dependent routes from indexing
-Disallow: /wishlist
-
-# Search engines
-Sitemap: https://homenmore.com/sitemap.xml
