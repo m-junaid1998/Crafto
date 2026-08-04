@@ -19,6 +19,7 @@
   /* UI Feedback & Badge Colors */
   --color-danger: #991b1b;           /* Deep Crimson Red (Error state) */
   --color-success: #166534;          /* Emerald Green for success alerts */
+  --color-blue: #1D4ED8;
   
   /* Reusable Discount Badge Colors */
   --color-discount-bg: #dc2626;      /* Bright Red for Discount Badge */
@@ -44,7 +45,7 @@
   --color-success: var(--color-success);
   --color-discount-bg: var(--color-discount-bg);
   --color-discount-text: var(--color-discount-text);
-
+  --color-blue: var(--color-blue);
   --animate-marquee: marquee 25s linear infinite;
 
   --font-serif: "Playfair Display", Georgia, serif;
