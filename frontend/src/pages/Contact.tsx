@@ -5,8 +5,8 @@ import { Button } from '../components/Button';
 import { WhatsAppIcon } from '../utils/socialicons';
 
 const INFO = [
-  { icon: <Mail size={22} />, title: 'Email', content: <a href="mailto:homenmore.pk@gmail.com" className="text-[var(--color-text-dark)] font-medium text-sm hover:text-[var(--color-accent)] transition-colors">homenmore.pk@gmail.com</a> },
-  { icon: <Phone size={22} />, title: 'Phone / WhatsApp', content: <><p className="text-[var(--color-text-dark)] font-semibold text-sm mb-2">0335 9115702</p><a href="https://wa.me/923359115702" target="_blank" rel="noreferrer" className="inline-flex items-center space-x-1.5 text-xs text-[var(--color-primary)] font-medium hover:underline"><WhatsAppIcon size={16} /><span>Chat on WhatsApp</span></a></> },
+  { icon: <Mail size={22} />, title: 'Email', content: <a href="mailto:homenmorestudio@gmail.com" className="text-[var(--color-text-dark)] font-medium text-sm hover:text-[var(--color-accent)] transition-colors">homenmore.pk@gmail.com</a> },
+  { icon: <Phone size={22} />, title: 'Phone / WhatsApp', content: <><a href="tel:+923238224745" className="text-[var(--color-text-dark)] font-semibold text-sm mb-2">03238224745</a><a href="https://wa.me/923238224745" target="_blank" rel="noreferrer" className="inline-flex items-center space-x-1.5 text-xs text-[var(--color-primary)] font-medium hover:underline"><WhatsAppIcon size={16} /><span>Chat on WhatsApp</span></a></> },
   { icon: <MapPin size={22} />, title: 'Location', content: <p className="text-[var(--color-muted)] text-sm max-w-[220px] leading-relaxed">Shop No 1, First Floor, Shanghai Plaza, China Market, Rawalpindi</p> }
 ];
 

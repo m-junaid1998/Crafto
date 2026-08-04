@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FacebookIcon, InstagramIcon, TikTokIcon, TwitterIcon, WhatsAppIcon, MapPinIcon } from "../utils/socialicons";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon, MapPinIcon } from "../utils/socialicons";
 
 const QUICK_LINKS = [
   { name: "About Us", path: "/aboutus" },
@@ -19,11 +19,9 @@ const CATEGORIES = [
 ];
 
 const SOCIAL_ICONS = [
-  { icon: <InstagramIcon />, href: "#", label: "Instagram" },
-  { icon: <WhatsAppIcon />, href: "#", label: "Whatsapp" },
-  { icon: <FacebookIcon />, href: "#", label: "Facebook" },
-  { icon: <TikTokIcon />, href: "#", label: "TikTok" },
-  { icon: <TwitterIcon />, href: "#", label: "Twitter" },
+  { icon: <InstagramIcon />, href: "https://instagram.com/home_n_more_studio/", label: "Instagram" },
+  { icon: <FacebookIcon />, href: "https://facebook.com/homenmorestudio", label: "Facebook" },     
+  { icon: <WhatsAppIcon />, href: "https://wa.me/923238224745?text=Hello%20Home%20N%20More%20Studio", label: "Whatsapp" },
   { icon: <MapPinIcon />, href: "#", label: "Location" },
 ];
 
@@ -49,6 +47,7 @@ export const Footer = () => {
                   key={i}
                   href={social.href}
                   aria-label={social.label}
+                  target="_blank"
                   className="w-9 h-9 rounded-xl border border-[var(--color-border)] bg-white text-[var(--color-primary)] flex items-center justify-center hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white transition-all duration-200 shadow-xs"
                 >
                   {social.icon}

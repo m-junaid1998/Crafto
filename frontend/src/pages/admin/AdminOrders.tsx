@@ -49,7 +49,7 @@ export default function AdminOrders() {
 
   const renderStatus = (status: Order["status"]) => {
     const styles = { CONFIRMED: "border-blue-500/30 text-blue-600 bg-blue-50/50", DELIVERED: "border-[var(--color-success)]/30 text-[var(--color-success)] bg-emerald-50/50", PENDING: "border-amber-500/30 text-amber-600 bg-amber-50/50", CANCELLED: "border-[var(--color-danger)]/30 text-[var(--color-danger)] bg-red-50/50" }[status];
-    return <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider border ${styles}`}><span className="w-1.5 h-1.5 rounded-full bg-current" />{status}</span>;
+    return <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider border ${styles}`}>{status}</span>;
   };
 
   const filtered = useMemo(() => sampleOrders.filter((o) => {
