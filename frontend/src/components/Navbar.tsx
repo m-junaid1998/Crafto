@@ -53,7 +53,7 @@ export const Navbar = () => {
                 </span>
               )}
             </button>
-            <button onClick={() => navigate('/signup')} className="hover:text-[var(--color-accent)] p-1 transition-colors cursor-pointer" aria-label="Wishlist"><User size={22} strokeWidth={2} /></button>
+            <button onClick={() => navigate('/myprofile')} className="hover:text-[var(--color-accent)] p-1 transition-colors cursor-pointer" aria-label="Wishlist"><User size={22} strokeWidth={2} /></button>
           </div>
         </div>
       </nav>

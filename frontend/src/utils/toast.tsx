@@ -9,26 +9,10 @@ interface ToastProps {
 }
 
 const toastConfigs = {
-  success: {
-    icon: CheckCircle2,
-    border: "border-emerald-500/30",
-    iconColor: "text-emerald-400",
-  },
-  error: {
-    icon: AlertCircle,
-    border: "border-red-500/30",
-    iconColor: "text-red-400",
-  },
-  info: {
-    icon: Info,
-    border: "border-blue-500/30",
-    iconColor: "text-blue-400",
-  },
-  warning: {
-    icon: AlertTriangle,
-    border: "border-amber-500/30",
-    iconColor: "text-amber-400",
-  },
+  success: { icon: CheckCircle2, border: "border-emerald-500/30", iconColor: "text-emerald-400" },
+  error: { icon: AlertCircle, border: "border-red-500/30", iconColor: "text-red-400" },
+  info: { icon: Info, border: "border-blue-500/30", iconColor: "text-blue-400" },
+  warning: { icon: AlertTriangle, border: "border-amber-500/30", iconColor: "text-amber-400" },
 };
 
 const CustomToast = ({ id, message, description, type }: ToastProps) => {
@@ -36,9 +20,7 @@ const CustomToast = ({ id, message, description, type }: ToastProps) => {
   const Icon = config.icon;
 
   return (
-    <div
-      className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-black border ${config.border} text-white shadow-xl w-full max-w-md`}
-    >
+    <div className={`flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-gray-900 border ${config.border} text-white shadow-2xl w-full max-w-md`}>
       <div className="flex items-center gap-2.5 min-w-0">
         <Icon className={`w-4 h-4 shrink-0 ${config.iconColor}`} />
         <div className="flex items-center gap-2 text-xs truncate">
@@ -46,7 +28,7 @@ const CustomToast = ({ id, message, description, type }: ToastProps) => {
           {description && (
             <>
               <span className="text-gray-600">•</span>
-              <span className="text-white truncate">{description}</span>
+              <span className="text-gray-300 truncate">{description}</span>
             </>
           )}
         </div>
@@ -55,7 +37,7 @@ const CustomToast = ({ id, message, description, type }: ToastProps) => {
       <button
         type="button"
         onClick={() => sonnerToast.dismiss(id)}
-        className="p-1 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all shrink-0 ml-2"
+        className="p-1 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all shrink-0 ml-2 cursor-pointer"
       >
         <X className="w-3.5 h-3.5" />
       </button>

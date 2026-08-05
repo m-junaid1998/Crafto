@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import Checkout from "../pages/Checkout";
 
+
 // Public Pages
 const Home = lazy(() => import("../pages/Index"));
 const Contact = lazy(() => import("../pages/Contact"));
@@ -12,6 +13,7 @@ const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy"));
 const TermsAndConditions = lazy(() => import("../pages/TermsAndConditions"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 const Login = lazy(() => import("../pages/Login"));
+const MyProfile = lazy(() => import("../pages/MyProfile"));
 
 // Admin Routes
 const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
@@ -33,6 +35,7 @@ export const publicRoutes = [
   { path: "terms", element: <TermsAndConditions /> },
   { path: "signup", element: <SignUp /> },
   { path: "login", element: <Login /> },
+  { path: "myprofile", element: <MyProfile /> },
 ];
 
 export const adminRoutes = [
