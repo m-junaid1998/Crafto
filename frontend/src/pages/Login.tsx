@@ -43,7 +43,7 @@ const Login = () => {
         </button>
         <div className="relative flex items-center justify-center"><div className="w-full border-t border-[var(--color-border)]"></div><span className="absolute bg-white px-3 text-[10px] font-bold text-[var(--color-muted)] uppercase">or email</span></div>
         <form onSubmit={handleSubmit} className="space-y-3">
-          <FormInput label="Email Address" type="email" name="email" value={form.email} onChange={handleChange} error={errors.email} placeholder="name@example.com" leftIcon={<Mail className="w-4 h-4 text-[var(--color-muted)]" />} className="!bg-[var(--color-card-bg)] !border-[var(--color-border)] text-[var(--color-text-dark)]" />
+          <FormInput label="Email Address" type="email" name="email" value={form.email} onChange={handleChange} error={errors.email} placeholder="name@gmail.com" leftIcon={<Mail className="w-4 h-4 text-[var(--color-muted)]" />} className="!bg-[var(--color-card-bg)] !border-[var(--color-border)] text-[var(--color-text-dark)]" />
           <FormInput label="Password" type="password" name="password" value={form.password} onChange={handleChange} error={errors.password} placeholder="••••••••" leftIcon={<Lock className="w-4 h-4 text-[var(--color-muted)]" />} className="!bg-[var(--color-card-bg)] !border-[var(--color-border)] text-[var(--color-text-dark)]" />
           <Button type="submit" disabled={loading} className="w-full !py-3 text-xs font-bold rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white"><span className="inline-flex items-center justify-center gap-2 whitespace-nowrap">{loading ? "Signing In..." : "Sign In"}{!loading && <ArrowRight className="w-4 h-4 shrink-0" />}</span></Button>
         </form>
