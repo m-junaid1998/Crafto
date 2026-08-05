@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import Checkout from "../pages/Checkout";
 
 // Public Pages
 const Home = lazy(() => import("../pages/Index"));
@@ -9,6 +10,8 @@ const Shop = lazy(() => import("../pages/Shop"));
 const ProductDetails = lazy(() => import("../pages/ProductDetails"));
 const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy"));
 const TermsAndConditions = lazy(() => import("../pages/TermsAndConditions"));
+const SignUp = lazy(() => import("../pages/SignUp"));
+const Login = lazy(() => import("../pages/Login"));
 
 // Admin Routes
 const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
@@ -24,9 +27,12 @@ export const publicRoutes = [
   { path: "shop", element: <Shop /> },
   { path: "aboutus", element: <AboutUs /> },
   { path: "wishlist", element: <Wishlist /> },
+  { path: "checkout", element: <Checkout /> },
   { path: "product/:id", element: <ProductDetails /> },
   { path: "privacy", element: <PrivacyPolicy /> },
   { path: "terms", element: <TermsAndConditions /> },
+  { path: "signup", element: <SignUp /> },
+  { path: "login", element: <Login /> },
 ];
 
 export const adminRoutes = [

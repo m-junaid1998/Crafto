@@ -2,7 +2,7 @@ import React, { useState, forwardRef, useId } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 export interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
+  label?: React.ReactNode;
   labelClassName?: string
   error?: string;
   helperText?: string;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import HeaderLogo from '../assets/images/logo.png';
-import { Search, Heart, Phone, MapPin, Lock, AlignJustify, X } from 'lucide-react';
+import { Search, Heart, Phone, MapPin, Lock, AlignJustify, X, User } from 'lucide-react';
 import { ShoppingBagIcon } from '../utils/socialicons';
 import { CartDrawer } from './CartDrawer';
 
@@ -37,22 +37,23 @@ export const Navbar = () => {
             ))}
           </div>
 
-          <div className="flex items-center space-x-3 md:space-x-5">
+          <div className="flex items-center md:space-x-4">
             <button className="hidden md:block hover:text-[var(--color-accent)] p-1 transition-colors cursor-pointer" aria-label="Search"><Search size={22} strokeWidth={2} /></button>
             <button onClick={() => navigate('/wishlist')} className="hidden md:block hover:text-[var(--color-accent)] p-1 transition-colors cursor-pointer" aria-label="Wishlist"><Heart size={22} strokeWidth={2} /></button>
             
             <button 
               onClick={() => setIsCartOpen(true)} 
-              className="relative w-10 h-10 md:w-auto md:h-auto rounded-full bg-[var(--color-primary)] md:bg-transparent text-white md:text-[var(--color-primary)] flex items-center justify-center shadow-md md:shadow-none hover:text-[var(--color-accent)] transition-colors cursor-pointer" 
+              className="relative w-10 h-10 md:w-auto md:h-auto  flex items-center justify-center  cursor-pointer" 
               aria-label="Open Cart"
             >
               <ShoppingBagIcon size={22} strokeWidth={2} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 md:-top-2 md:-right-2 bg-[var(--color-discount-bg)] text-[var(--color-discount-text)] text-[10px] font-bold w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center shadow-xs">
+                <span className="absolute -top-[0.2px] -right-[0.2px]  md:-top-2 md:-right-2 bg-[var(--color-discount-bg)] text-[var(--color-discount-text)] text-[10px] font-bold w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center shadow-xs">
                   {cartCount}
                 </span>
               )}
             </button>
+            <button onClick={() => navigate('/signup')} className="hover:text-[var(--color-accent)] p-1 transition-colors cursor-pointer" aria-label="Wishlist"><User size={22} strokeWidth={2} /></button>
           </div>
         </div>
       </nav>
