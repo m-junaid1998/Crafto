@@ -38,7 +38,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--color-bg-light)]">
+    <div className=" mt-auto flex items-center justify-center p-4 bg-[var(--color-bg-light)]">
       <div className="w-full max-w-md p-8 rounded-3xl bg-white border border-[var(--color-border)] shadow-xl space-y-5">
         <div className="text-center"><h1 className="text-2xl font-bold font-serif text-[var(--color-text-dark)]">Create an Account</h1><p className="text-xs text-[var(--color-muted)]">Join us to start exploring premium collections</p></div>
         <button type="button" onClick={() => toast.info("Google Sign Up", "Redirecting...")} className="w-full flex items-center justify-center gap-3 py-2.5 px-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-card-bg)] text-xs font-semibold text-[var(--color-text-dark)] hover:bg-gray-100 cursor-pointer">
