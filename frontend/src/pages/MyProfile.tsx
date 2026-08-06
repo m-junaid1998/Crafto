@@ -25,7 +25,7 @@ const MyProfile = () => {
             </div>
 
             {user?.role === "admin" && (
-              <button onClick={() => navigate("/admin/dashboard")} className="w-full flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-[var(--color-card-bg)] border border-[var(--color-border)] text-xs sm:text-sm font-semibold text-[var(--color-text-dark)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all group cursor-pointer">
+              <button onClick={() => navigate("/admin")} className="w-full flex items-center gap-3.5 px-5 py-4 rounded-2xl bg-[var(--color-card-bg)] border border-[var(--color-border)] text-xs sm:text-sm font-semibold text-[var(--color-text-dark)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all group cursor-pointer">
                 <Settings className="w-4 h-4 text-[var(--color-accent)] group-hover:rotate-45 transition-transform shrink-0" />
                 <span>Admin Panel</span>
               </button>

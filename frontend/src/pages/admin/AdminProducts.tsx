@@ -152,7 +152,7 @@ export const AdminProducts: React.FC = () => {
               </div>
               <div><label className={labelStyle}>Stock</label><input type="number" className={inputStyle} {...register("stock")} /></div>
               <div className="grid grid-cols-3 gap-3">
-                <div><label className={`${labelStyle} before:content-['Reg_price'] sm:before:content-['Regular_Price']`} /><input type="number" className={inputStyle} {...register("regularPrice")} /></div>
+                <div><label className={`${labelStyle} before:content-['Reg_price'] sm:before:content-['Regular_Price']`}/><input type="number" className={inputStyle} {...register("regularPrice")} /></div>
                 <div><label className={labelStyle}>Sale Price</label><input type="number" className={inputStyle} {...register("salePrice")} /></div>
                 <div><label className={labelStyle}>Discount</label><div className={`${inputStyle} flex items-center font-bold`} style={{ color: "var(--color-discount-bg)" }}>{discount}</div></div>
               </div>
