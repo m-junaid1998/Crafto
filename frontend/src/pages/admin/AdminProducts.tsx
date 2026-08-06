@@ -48,8 +48,8 @@ export const AdminProducts: React.FC = () => {
   };
 
   const isAllSel = products.length > 0 && products.every((p: any) => state.selectedIds.includes(p._id));
-  const inputStyle = "w-full bg-card-bg border border-border focus:border-accent text-sm text-text-dark rounded-md px-3.5 py-3 outline-none font-sans font-semibold transition-all placeholder:text-muted";
-  const labelStyle = "block text-xs font-bold text-muted uppercase tracking-wider mb-1.5 font-sans required";
+  const inputStyle = "w-full bg-card-bg border border-border focus:border-accent text-xs sm:text-sm text-text-dark rounded-md px-3 py-2.5 sm:py-3 outline-none font-sans font-semibold transition-all placeholder:text-muted";
+  const labelStyle = "block text-[11px] sm:text-xs font-bold text-muted uppercase tracking-wider mb-1 font-sans required";
 
   return (
     <div className="space-y-6 p-2 sm:p-6 max-w-7xl mx-auto font-sans">
@@ -57,7 +57,7 @@ export const AdminProducts: React.FC = () => {
         <div>
           <h1 className="text-xl md:text-2xl font-sans font-extrabold tracking-wider uppercase text-text-dark">PRODUCT MANAGEMENT</h1>
           <p className="text-xs md:text-sm text-muted mt-1 font-sans">
-            Manage main catalog and items details (Total:{" "}<span className="font-bold text-accent">{pagination?.totalCount || 0}</span>)
+            Manage main catalog and items details (Total: <span className="font-bold text-accent">{pagination?.totalCount || 0}</span>)
           </p>
         </div>
         <button onClick={() => openModal()} className="bg-primary hover:bg-primary-hover text-white text-xs md:text-sm font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all flex items-center gap-2 border border-primary/10 shadow-sm font-sans">
@@ -97,14 +97,15 @@ export const AdminProducts: React.FC = () => {
                 </span>
                 <h2 className="font-serif font-bold text-base text-text-dark line-clamp-1">{p.name}</h2>
                 <p className="text-sm font-bold text-text-dark">PKR. {p.salePrice} <span className="line-through text-muted text-xs font-normal">PKR. {p.regularPrice}</span></p>
+                
                 <div className="pt-2 border-t border-border flex justify-between items-center text-xs">
                   <span className="text-success font-bold">{p.stock} In Stock</span>
-                  <div className="flex gap-2.5 text-muted">
-                    <button aria-label={p.isPublished ? "Unpublish product" : "Publish product"} onClick={() => togglePublishStatus(p._id)} className={`transition-colors ${p.isPublished ? "hover:text-primary" : "text-muted opacity-60"}`}>
-                      {p.isPublished ? <Eye className="w-4 h-4 text-primary" /> : <EyeOff className="w-4 h-4 text-muted" strokeWidth={2.5} />}
+                  <div className="flex gap-3 sm:gap-2.5 text-muted items-center">
+                    <button aria-label={p.isPublished ? "Unpublish product" : "Publish product"} onClick={() => togglePublishStatus(p._id)} className={`p-1 transition-colors ${p.isPublished ? "hover:text-primary" : "text-muted opacity-60"}`}>
+                      {p.isPublished ? <Eye className="w-5 h-5 sm:w-4 sm:h-4 text-primary" /> : <EyeOff className="w-5 h-5 sm:w-4 sm:h-4 text-muted" strokeWidth={2.5} />}
                     </button>
-                    <button aria-label={`Edit ${p.name}`} onClick={() => openModal(p)} className="hover:text-accent transition-colors"><Edit2 className="w-4 h-4" /></button>
-                    <button aria-label={`Delete ${p.name}`} onClick={() => deleteProduct(p._id)} className="hover:text-danger transition-colors"><Trash2 className="w-4 h-4" /></button>
+                    <button aria-label={`Edit ${p.name}`} onClick={() => openModal(p)} className="p-1 hover:text-accent transition-colors"><Edit2 className="w-5 h-5 sm:w-4 sm:h-4" /></button>
+                    <button aria-label={`Delete ${p.name}`} onClick={() => deleteProduct(p._id)} className="p-1 hover:text-danger transition-colors"><Trash2 className="w-5 h-5 sm:w-4 sm:h-4" /></button>
                   </div>
                 </div>
               </div>
@@ -114,29 +115,28 @@ export const AdminProducts: React.FC = () => {
       )}
 
       {pagination && pagination.totalPages > 1 && <div className="pt-4 flex justify-center"><Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} onPageChange={setPage} /></div>}
-
       {state.isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-primary/70 backdrop-blur-sm flex items-center justify-center p-3 font-sans">
-          <div className="bg-bg-light border border-border rounded-xl w-full max-w-lg max-h-[92vh] overflow-y-auto p-6 space-y-4 no-scrollbar text-text-dark shadow-2xl">
-            <div className="flex justify-between items-center border-b border-border pb-3">
-              <h2 className="font-serif font-bold text-2xl text-text-dark">{state.editingProduct ? "Edit Product" : "Add New Product"}</h2>
-              <button aria-label="Close modal" onClick={() => setState((prev) => ({ ...prev, isModalOpen: false }))} className="text-muted hover:text-text-dark"><X size={20} /></button>
+        <div className="fixed inset-0 z-50 bg-primary/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 font-sans">
+          <div className="mt-auto bg-bg-light border border-border rounded-xl w-full max-w-md max-h-[72vh] overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4 no-scrollbar text-text-dark shadow-2xl">
+            <div className="flex justify-between items-center border-b border-border pb-2.5">
+              <h2 className="font-serif font-bold text-xl sm:text-2xl text-text-dark">{state.editingProduct ? "Edit Product" : "Add Product"}</h2>
+              <button aria-label="Close modal" onClick={() => setState((prev) => ({ ...prev, isModalOpen: false }))} className="text-muted hover:text-text-dark p-1"><X size={18} /></button>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
               <div>
-                <label className={labelStyle} >Product Images (Max 5) </label>
-                <div className="flex flex-wrap gap-2.5 mb-2">
+                <label className={labelStyle}>Product Images (Max 5)</label>
+                <div className="flex flex-wrap gap-2 mb-2">
                   {state.previews.map((src, i) => (
-                    <div key={i} className="relative w-16 h-16 border border-border rounded-md overflow-hidden bg-card-bg">
+                    <div key={i} className="relative w-12 h-12 sm:w-14 sm:h-14 border border-border rounded-md overflow-hidden bg-card-bg">
                       <img src={src} className="w-full h-full object-cover" alt={`Preview ${i + 1}`} />
-                      <button type="button" aria-label={`Remove image ${i + 1}`} onClick={() => setState((prev) => ({ ...prev, images: prev.images.filter((_, idx) => idx !== i), previews: prev.previews.filter((_, idx) => idx !== i) }))} className="absolute top-1 right-1 bg-primary/80 text-white rounded-full p-0.5 hover:bg-danger"><X size={10} /></button>
+                      <button type="button" aria-label={`Remove image ${i + 1}`} onClick={() => setState((prev) => ({ ...prev, images: prev.images.filter((_, idx) => idx !== i), previews: prev.previews.filter((_, idx) => idx !== i) }))} className="absolute top-0.5 right-0.5 bg-primary/80 text-white rounded-full p-0.5 hover:bg-danger"><X size={10} /></button>
                     </div>
                   ))}
                 </div>
                 {state.previews.length < 5 && (
-                  <label className="border border-dashed border-border hover:border-accent rounded-lg p-4 text-center bg-card-bg flex flex-col items-center justify-center cursor-pointer transition-colors">
-                    <Upload size={18} className="text-accent mb-1" />
-                    <span className="text-xs font-bold text-accent uppercase">Upload Images ({state.previews.length}/5)</span>
+                  <label className="border border-dashed border-border hover:border-accent rounded-lg p-2.5 text-center bg-card-bg flex flex-col items-center justify-center cursor-pointer transition-colors">
+                    <Upload size={16} className="text-accent mb-0.5" />
+                    <span className="text-[10px] sm:text-xs font-bold text-accent uppercase">Upload ({state.previews.length}/5)</span>
                     <input type="file" multiple accept="image/*" onChange={(e) => {
                       if (!e.target.files) return;
                       const files = Array.from(e.target.files).slice(0, 5 - state.previews.length);
@@ -146,22 +146,22 @@ export const AdminProducts: React.FC = () => {
                 )}
               </div>
               <div><label className={labelStyle}>Product Name</label><input placeholder="e.g. Luxury Handbag" className={inputStyle} {...register("name")} /></div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <div><label className={labelStyle}>Category</label><select className={inputStyle} {...register("categoryname")}>{categories.map((c: any) => <option key={c._id} value={c._id}>{c.categoryname}</option>)}</select></div>
                 <div><label className={labelStyle}>Sub-Category</label><select className={inputStyle} {...register("subCategory")}>{subCategories.map((s) => <option key={s} value={s}>{s}</option>)}</select></div>
               </div>
               <div><label className={labelStyle}>Stock</label><input type="number" className={inputStyle} {...register("stock")} /></div>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2">
                 <div><label className={`${labelStyle} before:content-['Reg_price'] sm:before:content-['Regular_Price']`}/><input type="number" className={inputStyle} {...register("regularPrice")} /></div>
                 <div><label className={labelStyle}>Sale Price</label><input type="number" className={inputStyle} {...register("salePrice")} /></div>
                 <div><label className={labelStyle}>Discount</label><div className={`${inputStyle} flex items-center font-bold`} style={{ color: "var(--color-discount-bg)" }}>{discount}</div></div>
               </div>
-              <div><label className={labelStyle}>Description</label><textarea rows={3} placeholder="Short product description..." className={inputStyle} {...register("description")} /></div>
-              <div className="flex items-center justify-between bg-card-bg p-3.5 rounded-lg border border-border">
-                <div><p className="text-xs font-bold text-text-dark uppercase">Published</p><p className="text-xs text-muted">Visible on storefront</p></div>
+              <div><label className={labelStyle}>Description</label><textarea rows={2} placeholder="Short product description..." className={inputStyle} {...register("description")} /></div>
+              <div className="flex items-center justify-between bg-card-bg p-3 rounded-lg border border-border">
+                <div><p className="text-xs font-bold text-text-dark uppercase">Published</p><p className="text-[10px] text-muted">Visible on storefront</p></div>
                 <input type="checkbox" className="w-4 h-4 accent-primary cursor-pointer" {...register("isPublished")} />
               </div>
-              <button type="submit" disabled={isProductMutationLoading} className="w-full bg-primary hover:bg-primary-hover text-white text-xs font-bold tracking-widest uppercase py-3.5 rounded-lg transition-all mt-2 font-sans">{isProductMutationLoading ? "Saving..." : state.editingProduct ? "Update Product" : "Add Product"}</button>
+              <button type="submit" disabled={isProductMutationLoading} className="w-full bg-primary hover:bg-primary-hover text-white text-xs font-bold tracking-widest uppercase py-3 rounded-lg transition-all mt-1 font-sans">{isProductMutationLoading ? "Saving..." : state.editingProduct ? "Update Product" : "Add Product"}</button>
             </form>
           </div>
         </div>
