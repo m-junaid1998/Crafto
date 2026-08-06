@@ -1,17 +1,5 @@
 import { useState } from "react";
-import {
-  LayoutDashboard,
-  ShoppingBag,
-  Users,
-  FolderTree,
-  Package,
-  Image,
-  Settings,
-  Menu,
-  X,
-  LogOut,
-  ExternalLink,
-} from "lucide-react";
+import {LayoutDashboard,ShoppingBag,Users,FolderTree,Package,Image,Settings,Menu,X,LogOut,ExternalLink} from "lucide-react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Button } from "../../components/Button";
 
@@ -30,7 +18,7 @@ export default function AdminLayout() {
   const { pathname } = useLocation();
 
   return (
-    <div className="h-screen w-screen flex overflow-hidden bg-[var(--color-bg-light)] text-[var(--color-text-dark)] font-sans">
+    <div className="h-dvh w-full flex overflow-hidden bg-[var(--color-bg-light)] text-[var(--color-text-dark)] font-sans">
       {open && (
         <div
           className="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 lg:hidden"
@@ -73,7 +61,6 @@ export default function AdminLayout() {
         <div className="p-4 border-t border-white/10 space-y-2">
           <Link
             to="/"
-            target="_blank"
             className="inline-flex items-center gap-3.5 px-4 py-3 text-xs uppercase tracking-widest font-semibold text-[var(--color-accent)] rounded-xl transition-all duration-200 hover:bg-[var(--color-accent)] hover:text-white"
           >
             <ExternalLink className="w-4 h-4 shrink-0" />
@@ -90,7 +77,8 @@ export default function AdminLayout() {
           </Button>
         </div>
       </aside>
-      <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
+
+      <div className="flex-1 flex flex-col h-full min-w-0 min-h-0 overflow-hidden">
         <header className="h-16 bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] px-4 sm:px-8 flex items-center justify-between shrink-0 z-30">
           <Button
             variant="ghost"
@@ -104,23 +92,15 @@ export default function AdminLayout() {
             Admin Workspace
           </span>
           <div className="flex items-center gap-3 ml-auto">
-            <Link to="/" target="_blank" className="hidden sm:inline-block">
-              <Button
-                variant="outline"
-                size="sm"
-                leftIcon={
-                  <ExternalLink className="w-3.5 h-3.5 text-[var(--color-accent)]" />
-                }
-              >
-                Live Store
-              </Button>
-            </Link>
             <div className="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center font-bold text-xs border border-[var(--color-accent)]">
-           HN
+              HN
             </div>
           </div>
         </header>
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <main 
+          className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto overscroll-y-contain scroll-smooth"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
           <Outlet />
         </main>
       </div>
