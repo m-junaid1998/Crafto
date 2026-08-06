@@ -1,4 +1,4 @@
-export const baseUrl = import.meta.env.VITE_BASE_URL ;
+export const baseUrl = import.meta.env.VITE_PRODUCTION_BASE_URL || import.meta.env.VITE_BASE_URL ;
 export const endpoints = {
   authRoutes: {
     register: "auth/register",
@@ -32,13 +32,11 @@ export const endpoints = {
   dashboardRoutes: {
     overview: "dashboard/overview",
   },
-
   mediaRoutes: {
     createupload: "media/upload",
     getupload: "media",
     deleteupload: (id: string | number) => `media/${id}`, 
   },
-
   orderRoutes: {
     create: "orders/create",
     myOrders: "orders/myorders",

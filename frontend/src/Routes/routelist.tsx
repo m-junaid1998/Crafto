@@ -1,7 +1,5 @@
 import { lazy } from "react";
 import Checkout from "../pages/Checkout";
-import AdminProducts from "../pages/admin/AdminProducts";
-
 
 // Public Pages
 const Home = lazy(() => import("../pages/Index"));
@@ -20,9 +18,9 @@ const MyProfile = lazy(() => import("../pages/MyProfile"));
 const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
 const AdminCategories = lazy(() => import("../pages/admin/AdminCategories"));
 const AdminOrders = lazy(() => import("../pages/admin/AdminOrders"));
+const AdminProducts = lazy(() => import("../pages/admin/AdminProducts"));
 const AdminCustomers = lazy(() => import("../pages/admin/AdminCustomers"));
 const AdminSettings = lazy(() => import("../pages/admin/AdminSettings"));
-
 
 export const publicRoutes = [
   { path: "/", element: <Home /> },

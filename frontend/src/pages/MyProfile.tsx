@@ -30,8 +30,6 @@ const MyProfile = () => {
                 <span>Admin Panel</span>
               </button>
             )}
-
-            {/* border-t hata kar pt-2 kar diya hai taake sirf ek line aaye */}
             <div className="pt-2 flex justify-center">
               <button onClick={() => { dispatch(logout()); navigate("/"); }} className="flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-red-50 border border-red-200 text-[var(--color-danger)] hover:bg-red-100 transition-all text-xs font-bold min-w-[150px] cursor-pointer">
                 <LogOut className="w-4 h-4" /> <span>Logout</span>

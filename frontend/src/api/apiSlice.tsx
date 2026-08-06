@@ -24,7 +24,7 @@ export const apiSlice = createApi({
     },
   }),
   endpoints: (builder) => ({
-    gets: builder.query<any, any>({
+    get: builder.query<any, any>({
       query: (arg) => {
         const endpoint = arg?.endpoint || arg;
         const params = arg?.params ? dataToQueryParameter(arg.params) : "";
@@ -64,4 +64,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useLazyGetsQuery, useGetsQuery, useCrudMutation, useUploadMutation } = apiSlice;
+export const { useLazyGetQuery, useGetQuery, useCrudMutation, useUploadMutation } = apiSlice;
