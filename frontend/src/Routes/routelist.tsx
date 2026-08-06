@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import Checkout from "../pages/Checkout";
+import AdminProducts from "../pages/admin/AdminProducts";
 
 
 // Public Pages
@@ -41,6 +42,7 @@ export const publicRoutes = [
 export const adminRoutes = [
   { path: "/admin", element: <Dashboard /> },
   { path: "/admin/categories", element: <AdminCategories /> },
+  { path: "/admin/products", element: <AdminProducts /> },
   { path: "/admin/orders", element: <AdminOrders /> },
   { path: "/admin/customers", element: <AdminCustomers /> },
   { path: "/admin/settings", element: <AdminSettings /> },
