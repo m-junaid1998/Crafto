@@ -18,7 +18,7 @@ const PublicLayout = () => (
   <Fragment>
   <AnnouncementBar />
   <Navbar />
-  <main>
+  <main className="flex-1">
   <Outlet />
   <WhatsAppButton />
   </main>
