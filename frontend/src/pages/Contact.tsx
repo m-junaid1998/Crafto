@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, User, MessageSquare, CheckCircle2, Store, Send } from 'lucide-react';
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Mail, Phone, MapPin, User, CheckCircle2, Store, Send, Loader2 } from 'lucide-react';
 import { FormInput } from '../components/FormInput';
 import { Button } from '../components/Button';
 import { WhatsAppIcon } from '../utils/socialicons';
+import { useContact } from '../hooks/useContact';
+
+const schema = z.object({
+  name: z.string().trim().min(1, 'Name is required'),
+  email: z.string().trim().min(1, 'Email is required').email('Invalid email address'),
+  message: z.string().trim().min(1, 'Message cannot be empty'),
+});
+
+type ContactFormData = z.infer<typeof schema>;
 
 const INFO = [
-  { icon: <Mail size={22} />, title: 'Email', content: <a href="mailto:homenmorestudio@gmail.com" className="text-[var(--color-text-dark)] font-medium text-sm hover:text-[var(--color-accent)] transition-colors">homenmore.pk@gmail.com</a> },
+  { icon: <Mail size={22} />, title: 'Email', content: <a href="mailto:homenmore.pk@gmail.com" className="text-[var(--color-text-dark)] font-medium text-sm hover:text-[var(--color-accent)]">homenmore.pk@gmail.com</a> },
   { icon: <Phone size={22} />, title: 'Phone / WhatsApp', content: <><a href="tel:+923238224745" className="text-[var(--color-text-dark)] font-semibold text-sm mb-2">03238224745</a><a href="https://wa.me/923238224745" target="_blank" rel="noreferrer" className="inline-flex items-center space-x-1.5 text-xs text-[var(--color-primary)] font-medium hover:underline"><WhatsAppIcon size={16} /><span>Chat on WhatsApp</span></a></> },
   { icon: <MapPin size={22} />, title: 'Location', content: <p className="text-[var(--color-muted)] text-sm max-w-[220px] leading-relaxed">Shop No 1, First Floor, Shanghai Plaza, China Market, Rawalpindi</p> }
 ];
@@ -18,8 +29,16 @@ const FEATS = [
 ];
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value });
+  const { submitContactQuery, isContactMutationLoading: loading } = useContact();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>({
+    resolver: zodResolver(schema),
+    defaultValues: { name: '', email: '', message: '' },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    const res = await submitContactQuery(data);
+    if (res?.success) reset();
+  };
 
   return (
     <div className="min-h-screen bg-[var(--color-bg-light)] pb-20 font-sans text-[var(--color-text-dark)]">
@@ -30,11 +49,11 @@ const Contact = () => {
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 -mt-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {INFO.map((card, i) => (
+          {INFO.map(({ icon, title, content }, i) => (
             <div key={i} className="bg-white rounded-2xl p-6 sm:p-8 text-center shadow-sm border border-[var(--color-border)] flex flex-col items-center justify-center">
-              <div className="w-12 h-12 rounded-xl bg-[var(--color-card-bg)] text-[var(--color-primary)] flex items-center justify-center mb-4">{card.icon}</div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)] mb-2">{card.title}</h3>
-              {card.content}
+              <div className="w-12 h-12 rounded-xl bg-[var(--color-card-bg)] text-[var(--color-primary)] flex items-center justify-center mb-4">{icon}</div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--color-muted)] mb-2">{title}</h3>
+              {content}
             </div>
           ))}
         </div>
@@ -45,18 +64,33 @@ const Contact = () => {
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-[var(--color-text-dark)] mb-1">Send Us a Message</h2>
               <p className="text-xs text-[var(--color-muted)] mb-6">Fill out the form below and we'll respond within 24 hours.</p>
 
-              <form onSubmit={(e) => { e.preventDefault(); console.log(form); }} className="space-y-4">
-                <FormInput label="Name" name="name" required placeholder="Your name" value={form.name} onChange={handleChange} leftIcon={<User size={16} />} />
-                <FormInput label="Email" name="email" type="email" required placeholder="you@example.com" value={form.email} onChange={handleChange} leftIcon={<Mail size={16} />} />
-                <FormInput label="Subject" name="subject" placeholder="How can we help?" value={form.subject} onChange={handleChange} leftIcon={<MessageSquare size={16} />} />
-                
-                <div className="w-full">
-                  <label className="block text-xs font-semibold text-[var(--color-text-dark)] mb-1.5 select-none">Message <span className="text-[var(--color-danger)] ml-0.5">*</span></label>
-                  <textarea name="message" required rows={4} placeholder="Tell us more about your inquiry..." value={form.message} onChange={handleChange} className="w-full bg-white text-xs sm:text-sm rounded-xl p-3.5 text-[var(--color-text-dark)] border border-[var(--color-border)] transition-all outline-none focus:ring-1 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] placeholder:text-gray-400 resize-none" />
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div>
+                  <FormInput label="Name" placeholder="Your name" leftIcon={<User size={16} />} {...register('name')} />
+                  {errors.name && <p className="text-[11px] text-[var(--color-danger)] mt-1 font-medium">{errors.name.message}</p>}
                 </div>
 
-                <Button type="submit" variant="primary" size="lg" className="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-xl" rightIcon={<Send size={15} />}>
-                  Send Message
+                <div>
+                  <FormInput label="Email" type="email" placeholder="you@gmail.com" leftIcon={<Mail size={16} />} {...register('email')} />
+                  {errors.email && <p className="text-[11px] text-[var(--color-danger)] mt-1 font-medium">{errors.email.message}</p>}
+                </div>
+
+                <div>
+                  <label className="block text-xs required font-semibold text-[var(--color-text-dark)] mb-1.5 select-none">
+                    Message 
+                  </label>
+                  <textarea rows={4} placeholder="Tell us more about your inquiry..."
+                    {...register('message')}
+                    className="w-full bg-white text-xs sm:text-sm rounded-xl p-3.5 border border-[var(--color-border)] outline-none focus:ring-1 focus:ring-[var(--color-primary)] placeholder:text-gray-400 resize-none"
+                  />
+                  {errors.message && <p className="text-[11px] text-[var(--color-danger)] mt-1 font-medium">{errors.message.message}</p>}
+                </div>
+
+                <Button type="submit" variant="primary" size="lg" disabled={loading}
+                  className="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-xl"
+                  rightIcon={loading ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
+                >
+                  {loading ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </div>
