@@ -53,7 +53,6 @@ const SignUp = () => {
             onSuccess={(cred) => cred.credential && googleLoginUser(cred.credential, { onSuccess: handleSuccess })}
             onError={() => toast.error("Google Auth", "Sign Up Failed")}
             shape="pill"
-            width="100%"
           />
         </div>
 

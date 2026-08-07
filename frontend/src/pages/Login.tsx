@@ -44,7 +44,6 @@ const Login = () => {
             onSuccess={(cred) => cred.credential && googleLoginUser(cred.credential, { onSuccess: handleAuthRedirect })}
             onError={() => toast.error("Google Auth", "Login Failed")}
             shape="pill"
-            width="100%"
           />
         </div>
 
