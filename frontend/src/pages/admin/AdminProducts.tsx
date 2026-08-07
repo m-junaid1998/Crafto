@@ -7,7 +7,6 @@ import { useProduct } from "../../hooks/useProduct";
 import { useCategory } from "../../hooks/useCategory";
 import { usePaginationParams } from "../../hooks/Pagination/usePaginationParams";
 import { Pagination } from "../../components/Pagination";
-import { Skeleton } from "../../components/Skeleton";
 import { debounce, validateEmptyObject, calculateDiscount } from "../../utils/helper";
 
 const schema = z.object({
@@ -23,7 +22,7 @@ const schema = z.object({
 
 export const AdminProducts: React.FC = () => {
   const { params, setPage, handleSearch } = usePaginationParams({ pageSize: 4 });
-  const { products, pagination, isLoadingProducts, createProduct, updateProduct, deleteProduct, togglePublishStatus, isProductMutationLoading } = useProduct(params);
+  const { products, pagination , createProduct, updateProduct, deleteProduct, togglePublishStatus, isProductMutationLoading } = useProduct(params);
   const { categories } = useCategory({ isAllRecord: true });
   const [state, setState] = useState({ selectedIds: [] as string[], isModalOpen: false, editingProduct: null as any, images: [] as File[], previews: [] as string[] });
   const { register, handleSubmit, watch, reset } = useForm({ resolver: zodResolver(schema), defaultValues: { name: "", categoryname: "", subCategory: "None", stock: 0, regularPrice: 0, salePrice: 0, description: "", isPublished: true } });
@@ -79,9 +78,7 @@ export const AdminProducts: React.FC = () => {
         </button>
       </div>
 
-      {isLoadingProducts ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">{[...Array(4)].map((_, i) => <div key={i} className="bg-white border border-border rounded-2xl p-4 space-y-3"><Skeleton variant="rounded" height={180} /><Skeleton variant="text" width="60%" /><Skeleton variant="text" width="90%" /></div>)}</div>
-      ) : (
+   
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
           {products.map((p: any) => (
             <div key={p._id} className="bg-white border border-border rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
@@ -112,12 +109,12 @@ export const AdminProducts: React.FC = () => {
             </div>
           ))}
         </div>
-      )}
+   
 
       {pagination && pagination.totalPages > 1 && <div className="pt-4 flex justify-center"><Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} onPageChange={setPage} /></div>}
       {state.isModalOpen && (
         <div className="fixed inset-0 z-50 bg-primary/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 font-sans">
-          <div className="mt-auto bg-bg-light border border-border rounded-xl w-full max-w-md max-h-[72vh] overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4 no-scrollbar text-text-dark shadow-2xl">
+          <div className="bg-bg-light border border-border rounded-xl w-full max-w-md max-h-[72vh] overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4 no-scrollbar text-text-dark shadow-2xl">
             <div className="flex justify-between items-center border-b border-border pb-2.5">
               <h2 className="font-serif font-bold text-xl sm:text-2xl text-text-dark">{state.editingProduct ? "Edit Product" : "Add Product"}</h2>
               <button aria-label="Close modal" onClick={() => setState((prev) => ({ ...prev, isModalOpen: false }))} className="text-muted hover:text-text-dark p-1"><X size={18} /></button>
