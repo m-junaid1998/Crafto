@@ -1,5 +1,4 @@
 import { lazy } from "react";
-import Checkout from "../pages/Checkout";
 
 // Public Pages
 const Home = lazy(() => import("../pages/Index"));
@@ -13,6 +12,7 @@ const TermsAndConditions = lazy(() => import("../pages/TermsAndConditions"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 const Login = lazy(() => import("../pages/Login"));
 const MyProfile = lazy(() => import("../pages/MyProfile"));
+const Checkout = lazy(() => import("../pages/Checkout"));
 
 // Admin Routes
 const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
@@ -21,6 +21,7 @@ const AdminOrders = lazy(() => import("../pages/admin/AdminOrders"));
 const AdminProducts = lazy(() => import("../pages/admin/AdminProducts"));
 const AdminCustomers = lazy(() => import("../pages/admin/AdminCustomers"));
 const AdminSettings = lazy(() => import("../pages/admin/AdminSettings"));
+const AdminContact = lazy(() => import("../pages/admin/AdminContact"));
 
 export const publicRoutes = [
   { path: "/", element: <Home /> },
@@ -38,10 +39,11 @@ export const publicRoutes = [
 ];
 
 export const adminRoutes = [
-  { path: "/admin", element: <Dashboard /> },
-  { path: "/admin/categories", element: <AdminCategories /> },
-  { path: "/admin/products", element: <AdminProducts /> },
-  { path: "/admin/orders", element: <AdminOrders /> },
-  { path: "/admin/customers", element: <AdminCustomers /> },
-  { path: "/admin/settings", element: <AdminSettings /> },
+  { path: "", element: <Dashboard /> },
+  { path: "categories", element: <AdminCategories /> },
+  { path: "products", element: <AdminProducts /> },
+  { path: "orders", element: <AdminOrders /> },
+  { path: "customers", element: <AdminCustomers /> },
+  { path: "contact", element: <AdminContact /> },
+  { path: "settings", element: <AdminSettings /> },
 ];

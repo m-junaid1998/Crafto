@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactElement }) => {
 const { token, user } = useSelector((state: any) => state.auth);
-return token && user?.role === "admin" ? children: <Navigate replace to="/login" />};
+return token && user?.role === "admin" ? children: <Navigate replace to="/" />};
 
 const PublicLayout = () => (
   <Fragment>
