@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { FacebookIcon, InstagramIcon, WhatsAppIcon, MapPinIcon } from "../utils/socialicons";
+import { FacebookIcon, InstagramIcon,  MapPinIcon, PhoneIcon } from "../utils/socialicons";
+
 
 const QUICK_LINKS = [
   { name: "About Us", path: "/aboutus" },
@@ -21,7 +22,7 @@ const CATEGORIES = [
 const SOCIAL_ICONS = [
   { icon: <InstagramIcon />, href: "https://instagram.com/home_n_more_studio/", label: "Instagram" },
   { icon: <FacebookIcon />, href: "https://facebook.com/homenmorestudio", label: "Facebook" },     
-  { icon: <WhatsAppIcon />, href: "https://wa.me/923238224745?text=Hello%20Home%20N%20More%20Studio", label: "Whatsapp" },
+  { icon: <PhoneIcon />, href: "tel:+923238224745", label: "Phone" },
   { icon: <MapPinIcon />, href: "#", label: "Location" },
 ];
 
