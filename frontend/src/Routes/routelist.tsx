@@ -20,6 +20,7 @@ const AdminCategories = lazy(() => import("../pages/admin/AdminCategories"));
 const AdminOrders = lazy(() => import("../pages/admin/AdminOrders"));
 const AdminProducts = lazy(() => import("../pages/admin/AdminProducts"));
 const AdminCustomers = lazy(() => import("../pages/admin/AdminCustomers"));
+const AdminMedia = lazy(() => import("../pages/admin/AdminMedia"));
 const AdminSettings = lazy(() => import("../pages/admin/AdminSettings"));
 const AdminContact = lazy(() => import("../pages/admin/AdminContact"));
 
@@ -45,5 +46,6 @@ export const adminRoutes = [
   { path: "orders", element: <AdminOrders /> },
   { path: "customers", element: <AdminCustomers /> },
   { path: "contact", element: <AdminContact /> },
+  { path: "media", element: <AdminMedia /> },
   { path: "settings", element: <AdminSettings /> },
 ];
